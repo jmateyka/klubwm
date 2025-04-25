@@ -22,3 +22,5 @@ POST-Route auf → Deadline: 15. Juni
 
 Finale Projekt-Präsentation: 30. Juni- 3. Juli
 → Deadline: Sonntag, 29. Juni, 23:59 Uhr
+
+# Projektmitglieder Johannes Mateyka (s0584167) und James Kuck (s0584170)
