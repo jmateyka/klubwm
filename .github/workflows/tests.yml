@@ -1,0 +1,19 @@
+name: tests
+
+on: [ push ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 21
+
+      - name: clean build
+        run: ./gradlew clean test --info --stacktrace
