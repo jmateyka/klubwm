@@ -1,9 +1,9 @@
-name: ci test
+name: ci
 
 on: [ push ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -16,4 +16,4 @@ jobs:
           java-version: 21
 
       - name: clean build
-        run: ./gradlew clean test --info --stacktrace
+        run: ./gradlew clean build --info --stacktrace
