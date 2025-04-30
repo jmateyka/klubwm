@@ -24,3 +24,7 @@ Finale Projekt-Präsentation: 30. Juni- 3. Juli
 → Deadline: Sonntag, 29. Juni, 23:59 Uhr
 
 Projektmitglieder Johannes Mateyka (s0584167) und James Kuck (s0584170)
+
+[![ci](https://github.com/jmateyka/klubwm/actions/workflows/tests.yml/badge.svg)](https://github.com/jmateyka/klubwm/actions/workflows/tests.yml)
+
+
