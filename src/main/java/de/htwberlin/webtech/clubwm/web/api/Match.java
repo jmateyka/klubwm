@@ -17,6 +17,8 @@ public class Match {
     }
 
     // Getter und Setter
+    public long getId() { return id; }
+
     public String getHomeTeam() {
         return homeTeam;
     }
