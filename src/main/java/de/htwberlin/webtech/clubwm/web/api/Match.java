@@ -1,15 +1,13 @@
-package de.htwberlin.webtech.clubwm.model;
+package de.htwberlin.webtech.clubwm.web.api;
 
-public class match {
-
+public class Match {
     private String homeTeam;
     private String visitorTeam;
     private int homeScore;
     private int visitorScore;
 
-    public match() {}
 
-    public match(String homeTeam, String visitorTeam, int homeScore, int visitorScore) {
+    public Match(String homeTeam, String visitorTeam, int homeScore, int visitorScore) {
         this.homeTeam = homeTeam;
         this.visitorTeam = visitorTeam;
         this.homeScore = homeScore;
