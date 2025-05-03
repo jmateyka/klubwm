@@ -1,13 +1,15 @@
 package de.htwberlin.webtech.clubwm.web.api;
 
 public class Match {
+    private long id;
     private String homeTeam;
     private String visitorTeam;
     private int homeScore;
     private int visitorScore;
 
 
-    public Match(String homeTeam, String visitorTeam, int homeScore, int visitorScore) {
+    public Match(long id, String homeTeam, String visitorTeam, int homeScore, int visitorScore) {
+        this.id = id;
         this.homeTeam = homeTeam;
         this.visitorTeam = visitorTeam;
         this.homeScore = homeScore;

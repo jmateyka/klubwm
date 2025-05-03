@@ -15,8 +15,8 @@ public class MatchRestController {
 
     public MatchRestController() {
         matches = new ArrayList<>();
-        matches.add(new Match("Germany", "Brazil", 7, 1));
-        matches.add(new Match("Argentina", "France", 3, 4));
+        matches.add(new Match(01, "Germany", "Brazil", 7, 1));
+        matches.add(new Match(02, "Argentina", "France", 3, 4));
     }
 
     @GetMapping(path = "/api/v1/matches")
