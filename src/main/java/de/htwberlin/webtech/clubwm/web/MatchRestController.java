@@ -19,7 +19,7 @@ public class MatchRestController {
         matches.add(new Match("Argentina", "France", 3, 4));
     }
 
-    @GetMapping(path = "/api/v1/match")
+    @GetMapping(path = "/api/v1/matches")
     public ResponseEntity<List<Match>> fetchMatches() {
         return ResponseEntity.ok(matches);
     }
