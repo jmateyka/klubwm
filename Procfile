@@ -1,0 +1,1 @@
+web java -Dserver.port=$PORT $JAVA_OPS -jar build/libs/clubwm-0.0.1-SNAPSHOT.jar
