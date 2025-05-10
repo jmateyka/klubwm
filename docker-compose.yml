@@ -8,6 +8,6 @@
       ports:
         - "8080:8080"
       environment:
-        DATASOURCE_URL: "jdbc:postgresql://@dpg-d0fjriqdbo4c73ahmg30-a.frankfurt-postgres.render.com/clubwm"
+        DATASOURCE_URL: "jdbc:postgresql://dpg-d0fjriqdbo4c73ahmg30-a.frankfurt-postgres.render.com/clubwm"
         DATASOURCE_USERNAME: "clubwm_user"
         DATASOURCE_PASSWORD: "Lq1F7etxy73HRELagtBk6ptcg2TksJsO"
