@@ -4,10 +4,12 @@ import de.htwberlin.webtech.clubwm.web.api.Match;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*") // zurzeit ALLE erlaubt, Einschränkung möglich
 @RestController
 public class MatchRestController {
 
