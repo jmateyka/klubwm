@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "*") // zurzeit ALLE erlaubt, Einschränkung möglich
+@CrossOrigin(origins = "https://klubwm-frontend.onrender.com")
+//@CrossOrigin(origins = "https://deine-frontend-domain.com") // Beispiel für eine spezifische Domain, auch im Array für mehrere Optionen möglich
 @RestController
 public class MatchRestController {
 
