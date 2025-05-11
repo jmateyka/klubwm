@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("https://dein-frontend.onrender.com");
+                registry.addMapping("/**").allowedOrigins("https://klubwm-frontend.onrender.com/");
             }
         };
     }
