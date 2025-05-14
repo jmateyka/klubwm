@@ -7,16 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @CrossOrigin(origins = "https://klubwm-frontend.onrender.com")
 @RestController
 @RequestMapping("/api/v1")
 public class MatchRestController {
 
+    private List<Match> matches;
     private final MatchService matchService;
+
 
     @Autowired
     public MatchRestController(MatchService matchService) {
+        matches = new ArrayList<>();
+        matches.add(new Match(01, "Germany", "Brazil", 7, 1));
+        matches.add(new Match(02, "Argentina", "France", 3, 4));
         this.matchService = matchService;
     }
 
