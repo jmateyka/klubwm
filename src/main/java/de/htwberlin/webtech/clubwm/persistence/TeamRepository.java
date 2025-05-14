@@ -1,10 +1,9 @@
 package de.htwberlin.webtech.clubwm.persistence;
 
-import de.htwberlin.webtech.clubwm.web.api.Match;
+import de.htwberlin.webtech.clubwm.web.api.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MatchRepository extends JpaRepository<Match, Long> {
-    // hier evtl. weitere Abfragen einfügen
+public interface TeamRepository extends JpaRepository<Team, Long> {
 }

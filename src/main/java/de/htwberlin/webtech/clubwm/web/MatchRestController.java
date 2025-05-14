@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @CrossOrigin(origins = "https://klubwm-frontend.onrender.com")
 @RestController
 @RequestMapping("/api/v1")
 public class MatchRestController {
 
     private final MatchService matchService;
-
 
     @Autowired
     public MatchRestController(MatchService matchService) {
@@ -30,7 +28,7 @@ public class MatchRestController {
 
     @PostMapping("/matches")
     public ResponseEntity<Match> saveMatchResult(@RequestBody Match match) {
-        Match savedMatch = matchService.saveMatch(match);  // Speichern des Matches
-        return ResponseEntity.ok(savedMatch);  // Rückgabe des gespeicherten Matches
+        Match savedMatch = matchService.saveMatch(match);
+        return ResponseEntity.ok(savedMatch);
     }
 }
