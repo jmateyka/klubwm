@@ -8,6 +8,8 @@ public class Match {
     private int visitorScore;
 
 
+    public Match() {}
+
     public Match(long id, String homeTeam, String visitorTeam, int homeScore, int visitorScore) {
         this.id = id;
         this.homeTeam = homeTeam;
