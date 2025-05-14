@@ -2,18 +2,18 @@ package de.htwberlin.webtech.clubwm.web;
 
 import de.htwberlin.webtech.clubwm.web.api.Match;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "https://klubwm-frontend.onrender.com")
 @RestController
+@RequestMapping("/api/v1")
 public class MatchRestController {
 
-    private List matches;
+    private List<Match> matches;
 
     public MatchRestController() {
         matches = new ArrayList<>();
@@ -26,5 +26,13 @@ public class MatchRestController {
         return ResponseEntity.ok(matches);
     }
 
+
+    @PostMapping("/matches")
+    public ResponseEntity<Void> saveMatchResult(@RequestBody Match match) {
+        // Existierendes Spiel anhand der ID finden und aktualisieren
+        matches.removeIf(m -> m.getId() == match.getId());
+        matches.add(match);
+        return ResponseEntity.ok().build();
+    }
 
 }
