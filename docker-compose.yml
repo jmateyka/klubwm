@@ -1,3 +1,4 @@
+  yaml
   version: '3.8'
 
   services:
@@ -8,6 +9,8 @@
       ports:
         - "8080:8080"
       environment:
-        DATASOURCE_URL: "jdbc:postgresql://dpg-d0fjriqdbo4c73ahmg30-a.frankfurt-postgres.render.com/clubwm"
-        DATASOURCE_USERNAME: "clubwm_user"
-        DATASOURCE_PASSWORD: "Lq1F7etxy73HRELagtBk6ptcg2TksJsO"
+        DATASOURCE_URL: "${DATASOURCE_URL}"
+        DATASOURCE_USERNAME: "${DATASOURCE_USERNAME}"
+        DATASOURCE_PASSWORD: "${DATASOURCE_PASSWORD}"
+      env_file:
+        - .env     # Datei, um Umgebungsvariablen zu definieren
