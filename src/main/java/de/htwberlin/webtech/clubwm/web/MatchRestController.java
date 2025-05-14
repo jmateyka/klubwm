@@ -27,8 +27,8 @@ public class MatchRestController {
     }
 
     @PostMapping("/matches")
-    public ResponseEntity<Void> saveMatchResult(@RequestBody Match match) {
-        matchService.saveMatch(match);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Match> saveMatchResult(@RequestBody Match match) {
+        Match savedMatch = matchService.saveMatch(match);  // Speichern des Matches
+        return ResponseEntity.ok(savedMatch);  // Rückgabe des gespeicherten Matches
     }
 }
