@@ -37,6 +37,12 @@ public class TeamEntity {
         this.marketValue = marketValue;
     }
 
+
+    public TeamEntity(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }
