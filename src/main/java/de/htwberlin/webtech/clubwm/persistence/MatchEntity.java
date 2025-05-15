@@ -7,60 +7,79 @@ public class MatchEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
-    @Column(nullable = false)
-    private String homeTeam;
-    @Column(nullable = false)
-    private String visitorTeam;
+    @ManyToOne
+    @JoinColumn(name = "home_team_id", nullable = false)
+    private TeamEntity homeTeam;
+
+    @ManyToOne
+    @JoinColumn(name = "visitor_team_id", nullable = false)
+    private TeamEntity visitorTeam;
+
     private int homeScore;
     private int visitorScore;
 
-    public MatchEntity(long id, String homeTeam, String visitorTeam, int homeScore, int visitorScore) {
+    @ManyToOne
+    @JoinColumn(name = "stadium_id", nullable = false)
+    private StadiumEntity stadium;
+
+    public MatchEntity() {}
+
+    public MatchEntity(long id, TeamEntity homeTeam, TeamEntity visitorTeam, int homeScore, int visitorScore, StadiumEntity stadium) {
         this.id = id;
         this.homeTeam = homeTeam;
         this.visitorTeam = visitorTeam;
         this.homeScore = homeScore;
         this.visitorScore = visitorScore;
-    }
-
-    protected MatchEntity() {
+        this.stadium = stadium;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getHomeTeam() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public TeamEntity getHomeTeam() {
         return homeTeam;
     }
 
-    public String getVisitorTeam() {
+    public void setHomeTeam(TeamEntity homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public TeamEntity getVisitorTeam() {
         return visitorTeam;
+    }
+
+    public void setVisitorTeam(TeamEntity visitorTeam) {
+        this.visitorTeam = visitorTeam;
     }
 
     public int getHomeScore() {
         return homeScore;
     }
 
-    public int getVisitorScore() {
-        return visitorScore;
-    }
-
-    public void setHomeTeam(String homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public void setVisitorTeam(String visitorTeam) {
-        this.visitorTeam = visitorTeam;
-    }
-
     public void setHomeScore(int homeScore) {
         this.homeScore = homeScore;
     }
 
+    public int getVisitorScore() {
+        return visitorScore;
+    }
+
     public void setVisitorScore(int visitorScore) {
         this.visitorScore = visitorScore;
+    }
+
+    public StadiumEntity getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(StadiumEntity stadium) {
+        this.stadium = stadium;
     }
 }
