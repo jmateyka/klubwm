@@ -6,13 +6,16 @@ import de.htwberlin.webtech.clubwm.web.api.Team;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @CrossOrigin(origins = "https://klubwm-frontend.onrender.com")
 @RestController
 @RequestMapping("/api/v1")
 public class MatchRestController {
 
     @GetMapping("/matches")
-    public ResponseEntity<Match> fetchMatches() {
+    public ResponseEntity<List<Match>> fetchMatches() {
         // Feste Beispiel-Daten
         Team homeTeam = new Team(1, "Real Madrid");
         Team visitorTeam = new Team(2, "FC Bayern München");
@@ -20,6 +23,9 @@ public class MatchRestController {
 
         Match match = new Match(1, homeTeam, visitorTeam, 0, 0, stadium);
 
-        return ResponseEntity.ok(match);
+        // Ein Match in ein List-Objekt verpacken
+        List<Match> matches = Collections.singletonList(match);
+
+        return ResponseEntity.ok(matches);
     }
 }
