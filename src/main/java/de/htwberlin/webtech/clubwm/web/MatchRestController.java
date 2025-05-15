@@ -1,34 +1,25 @@
 package de.htwberlin.webtech.clubwm.web;
 
-import de.htwberlin.webtech.clubwm.service.MatchService;
 import de.htwberlin.webtech.clubwm.web.api.Match;
-import org.springframework.beans.factory.annotation.Autowired;
+import de.htwberlin.webtech.clubwm.web.api.Stadium;
+import de.htwberlin.webtech.clubwm.web.api.Team;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "https://klubwm-frontend.onrender.com")
 @RestController
 @RequestMapping("/api/v1")
 public class MatchRestController {
 
-    private final MatchService matchService;
-
-    @Autowired
-    public MatchRestController(MatchService matchService) {
-        this.matchService = matchService;
-    }
-
     @GetMapping("/matches")
-    public ResponseEntity<List<Match>> fetchMatches() {
-        List<Match> matches = matchService.getAllMatches();
-        return ResponseEntity.ok(matches);
-    }
+    public ResponseEntity<Match> fetchMatches() {
+        // Feste Beispiel-Daten
+        Team homeTeam = new Team(1, "Real Madrid");
+        Team visitorTeam = new Team(2, "FC Bayern München");
+        Stadium stadium = new Stadium(1, "Allianz Arena", "München", 75000);
 
-    @PostMapping("/matches")
-    public ResponseEntity<Match> saveMatchResult(@RequestBody Match match) {
-        Match savedMatch = matchService.saveMatch(match);
-        return ResponseEntity.ok(savedMatch);
+        Match match = new Match(1, homeTeam, visitorTeam, 0, 0, stadium);
+
+        return ResponseEntity.ok(match);
     }
 }

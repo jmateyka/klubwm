@@ -1,5 +1,5 @@
 package de.htwberlin.webtech.clubwm.service;
-
+/*
 import de.htwberlin.webtech.clubwm.persistence.StadiumEntity;
 import de.htwberlin.webtech.clubwm.persistence.StadiumRepository;
 import de.htwberlin.webtech.clubwm.web.api.Stadium;
@@ -36,6 +36,8 @@ public class StadiumService {
     }
 
     private StadiumEntity convertApiToEntity(Stadium stadium) {
-        return new StadiumEntity(stadium.getId(), stadium.getName(), stadium.getLocation(), stadium.getCapacity());
+        return new StadiumEntity(stadium.getName(), stadium.getLocation(), stadium.getCapacity());
     }
 }
+
+ */

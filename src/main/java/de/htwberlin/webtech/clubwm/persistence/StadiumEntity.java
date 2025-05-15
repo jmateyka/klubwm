@@ -1,13 +1,13 @@
 package de.htwberlin.webtech.clubwm.persistence;
 
 import jakarta.persistence.*;
-
+/*
 @Entity(name = "Stadiums")
 public class StadiumEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id; // Long, damit es null gesetzt werden kann und von der DB generiert werden kann
 
     @Column(nullable = false)
     private String name;
@@ -18,20 +18,20 @@ public class StadiumEntity {
     @Column(nullable = false)
     private int capacity;
 
-    public StadiumEntity() {}
+    protected StadiumEntity() {}
 
-    public StadiumEntity(long id, String name, String location, int capacity) {
-        this.id = id;
+    // Konstruktor ohne ID, da diese von der DB generiert wird
+    public StadiumEntity(String name, String location, int capacity) {
         this.name = name;
         this.location = location;
         this.capacity = capacity;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,3 +59,4 @@ public class StadiumEntity {
         this.capacity = capacity;
     }
 }
+*/

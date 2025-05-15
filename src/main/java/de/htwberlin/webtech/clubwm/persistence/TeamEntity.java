@@ -2,6 +2,7 @@ package de.htwberlin.webtech.clubwm.persistence;
 
 import jakarta.persistence.*;
 
+/*
 @Entity(name = "Teams")
 public class TeamEntity {
 
@@ -99,3 +100,5 @@ public class TeamEntity {
         this.marketValue = marketValue;
     }
 }
+
+ */

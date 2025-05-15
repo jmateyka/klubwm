@@ -2,12 +2,13 @@ package de.htwberlin.webtech.clubwm.persistence;
 
 import jakarta.persistence.*;
 
+/*
 @Entity(name = "Matches")
 public class MatchEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "home_team_id", nullable = false)
@@ -24,10 +25,9 @@ public class MatchEntity {
     @JoinColumn(name = "stadium_id", nullable = false)
     private StadiumEntity stadium;
 
-    public MatchEntity() {}
+    protected MatchEntity() {}
 
-    public MatchEntity(long id, TeamEntity homeTeam, TeamEntity visitorTeam, int homeScore, int visitorScore, StadiumEntity stadium) {
-        this.id = id;
+    public MatchEntity(TeamEntity homeTeam, TeamEntity visitorTeam, int homeScore, int visitorScore, StadiumEntity stadium) {
         this.homeTeam = homeTeam;
         this.visitorTeam = visitorTeam;
         this.homeScore = homeScore;
@@ -35,11 +35,11 @@ public class MatchEntity {
         this.stadium = stadium;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -82,4 +82,4 @@ public class MatchEntity {
     public void setStadium(StadiumEntity stadium) {
         this.stadium = stadium;
     }
-}
+}*/

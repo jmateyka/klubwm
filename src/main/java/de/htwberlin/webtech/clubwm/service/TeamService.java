@@ -1,5 +1,5 @@
 package de.htwberlin.webtech.clubwm.service;
-
+/*
 import de.htwberlin.webtech.clubwm.persistence.TeamEntity;
 import de.htwberlin.webtech.clubwm.persistence.TeamRepository;
 import de.htwberlin.webtech.clubwm.web.api.Team;
@@ -39,3 +39,5 @@ public class TeamService {
         return new TeamEntity(team.getId(), team.getName());
     }
 }
+
+ */
