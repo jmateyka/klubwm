@@ -1,11 +1,13 @@
 package de.htwberlin.webtech.clubwm.service;
 
+import de.htwberlin.webtech.clubwm.persistence.StadiumEntity;
 import de.htwberlin.webtech.clubwm.persistence.StadiumRepository;
 import de.htwberlin.webtech.clubwm.web.api.Stadium;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StadiumService {
@@ -18,10 +20,22 @@ public class StadiumService {
     }
 
     public List<Stadium> getAllStadiums() {
-        return stadiumRepository.findAll();
+        return stadiumRepository.findAll().stream()
+                .map(this::convertEntityToApi)
+                .collect(Collectors.toList());
     }
 
     public Stadium saveStadium(Stadium stadium) {
-        return stadiumRepository.save(stadium);
+        StadiumEntity stadiumEntity = convertApiToEntity(stadium);
+        StadiumEntity savedEntity = stadiumRepository.save(stadiumEntity);
+        return convertEntityToApi(savedEntity);
+    }
+
+    private Stadium convertEntityToApi(StadiumEntity entity) {
+        return new Stadium(entity.getId(), entity.getName(), entity.getLocation(), entity.getCapacity());
+    }
+
+    private StadiumEntity convertApiToEntity(Stadium stadium) {
+        return new StadiumEntity(stadium.getId(), stadium.getName(), stadium.getLocation(), stadium.getCapacity());
     }
 }
