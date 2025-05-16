@@ -1,5 +1,5 @@
 package de.htwberlin.webtech.clubwm.service;
-/*
+
 import de.htwberlin.webtech.clubwm.persistence.MatchEntity;
 import de.htwberlin.webtech.clubwm.persistence.MatchRepository;
 import de.htwberlin.webtech.clubwm.persistence.TeamEntity;
@@ -61,5 +61,3 @@ public class MatchService {
                 matchEntity.getHomeScore(), matchEntity.getVisitorScore(), stadium);
     }
 }
-
- */

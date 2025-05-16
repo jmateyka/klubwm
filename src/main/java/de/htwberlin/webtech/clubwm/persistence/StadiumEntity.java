@@ -1,7 +1,7 @@
 package de.htwberlin.webtech.clubwm.persistence;
 
 import jakarta.persistence.*;
-/*
+
 @Entity(name = "Stadiums")
 public class StadiumEntity {
 
@@ -59,4 +59,4 @@ public class StadiumEntity {
         this.capacity = capacity;
     }
 }
-*/
+

@@ -2,7 +2,7 @@ package de.htwberlin.webtech.clubwm.persistence;
 
 import jakarta.persistence.*;
 
-/*
+
 @Entity(name = "Matches")
 public class MatchEntity {
 
@@ -82,4 +82,4 @@ public class MatchEntity {
     public void setStadium(StadiumEntity stadium) {
         this.stadium = stadium;
     }
-}*/
+}
