@@ -12,4 +12,4 @@
         DATASOURCE_USERNAME: "${DATASOURCE_USERNAME}"
         DATASOURCE_PASSWORD: "${DATASOURCE_PASSWORD}"
       env_file:
-        - .env     # Datei, um Umgebungsvariablen zu definieren
+        - .env     # Datei, um Umgebungsvariablen zu definierena
