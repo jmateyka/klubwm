@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS teams (
+CREATE TABLE teams (
                                      id SERIAL PRIMARY KEY,
                                      name VARCHAR(255) NOT NULL,
                                      country VARCHAR(255),

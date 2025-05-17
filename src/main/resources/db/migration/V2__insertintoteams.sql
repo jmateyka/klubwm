@@ -1,5 +1,5 @@
 INSERT INTO teams (name, country, location, league, average_age, market_value) VALUES
-                                                                                 ('Manchester City', 'England', 'Manchester', 'Premier League', 26.8, '1,31 Mrd. €'),
+                                                                                 ('Manchester City', 'England', 'Manchester', 'Premier League', 26.8,  '1,31 Mrd. €'),
                                                                                  ('Real Madrid', 'Spanien', 'Madrid', 'La Liga', 27.1, '1,27 Mrd. €'),
                                                                                  ('FC Paris Saint-Germain', 'Frankreich', 'Paris', 'Ligue 1', 23.8, '923,50 Mio. €'),
                                                                                  ('FC Chelsea', 'England', 'London', 'Premier League', 23.7, '922,00 Mio. €'),
