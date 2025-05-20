@@ -23,6 +23,7 @@
       enabled: true
       baseline-on-migrate: false
       locations: classpath:db/migration
+      schemas: public
 
   logging:
     level:
