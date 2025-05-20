@@ -22,10 +22,10 @@ public class TeamEntity {
     @Column(nullable = false)
     private String league;
 
-    private double averageAge;
+    private double average_age;
 
     @Column(nullable = false)
-    private String marketValue;
+    private String market_value;
 
     public TeamEntity() {}
 
@@ -34,8 +34,8 @@ public class TeamEntity {
         this.country = country;
         this.location = location;
         this.league = league;
-        this.averageAge = averageAge;
-        this.marketValue = marketValue;
+        this.average_age = averageAge;
+        this.market_value = marketValue;
     }
 
 
@@ -76,19 +76,19 @@ public class TeamEntity {
     }
 
     public double getAverageAge() {
-        return averageAge;
+        return average_age;
     }
 
     public void setAverageAge(double averageAge) {
-        this.averageAge = averageAge;
+        this.average_age = averageAge;
     }
 
     public String getMarketValue() {
-        return marketValue;
+        return market_value;
     }
 
-    public void setMarketValue(String marketValue) {
-        this.marketValue = marketValue;
+    public void setMarketValue(String market_value) {
+        this.market_value = market_value;
     }
 }
 

@@ -26,6 +26,14 @@ public class TeamService {
     }
 
     private Team convertEntityToApi(TeamEntity entity) {
-        return new Team(entity.getId(), entity.getName());
+        return new Team(
+                entity.getId(),
+                entity.getName(),
+                entity.getCountry(),
+                entity.getLocation(),
+                entity.getLeague(),
+                entity.getAverageAge(),
+                entity.getMarketValue()
+        );
     }
 }
