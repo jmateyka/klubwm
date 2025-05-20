@@ -29,13 +29,13 @@ public class TeamEntity {
 
     public TeamEntity() {}
 
-    public TeamEntity(String name, String country, String location, String league, double averageAge, String marketValue) {
+    public TeamEntity(String name, String country, String location, String league, double average_age, String market_value) {
         this.name = name;
         this.country = country;
         this.location = location;
         this.league = league;
-        this.average_age = averageAge;
-        this.market_value = marketValue;
+        this.average_age = average_age;
+        this.market_value = market_value;
     }
 
 
@@ -79,8 +79,8 @@ public class TeamEntity {
         return average_age;
     }
 
-    public void setAverageAge(double averageAge) {
-        this.average_age = averageAge;
+    public void setAverageAge(double average_age) {
+        this.average_age = average_age;
     }
 
     public String getMarketValue() {
