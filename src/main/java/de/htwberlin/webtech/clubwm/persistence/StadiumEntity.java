@@ -7,7 +7,7 @@ public class StadiumEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Long, damit es null gesetzt werden kann und von der DB generiert werden kann
+    private Long id;
 
     @Column(nullable = false)
     private String name;
