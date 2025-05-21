@@ -1,5 +1,5 @@
 -- db/migration/V6__insertintomatches.sql
-INSERT INTO matches (home_team_id, visitor_team_id, home_score, visitor_score, stadium_id) VALUES
+INSERT INTO matches (hometeamid, visitorteamid, homescore, visitorscore, stadiumid) VALUES
                                                                                                ((SELECT id FROM teams WHERE name='Al Ahly FC'), (SELECT id FROM teams WHERE name='Inter Miami CF'), 0, 0, (SELECT id FROM stadiums WHERE name='Hard-Rock-Stadion')),
                                                                                                ((SELECT id FROM teams WHERE name='FC Bayern München'), (SELECT id FROM teams WHERE name='Auckland City FC'), 0, 0, (SELECT id FROM stadiums WHERE name='TQL-Stadion')),
                                                                                                ((SELECT id FROM teams WHERE name='Paris Saint-Germain'), (SELECT id FROM teams WHERE name='Atlético de Madrid'), 0, 0, (SELECT id FROM stadiums WHERE name='Rose-Bowl-Stadion')),

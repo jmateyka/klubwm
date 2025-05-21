@@ -21,8 +21,9 @@
 
     flyway:
       enabled: true
-      baseline-on-migrate: false
+      baseline-on-migrate: true
       clean-on-validation-error: true
+      clean-disabled: false  # Ermöglicht das Bereinigen der Datenbank
       locations: classpath:db/migration
       schemas: public
 

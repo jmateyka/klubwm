@@ -11,18 +11,21 @@ public class MatchEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "home_team_id", nullable = false)
+    @JoinColumn(name = "hometeamid", nullable = false)
     private TeamEntity homeTeam;
 
     @ManyToOne
-    @JoinColumn(name = "visitor_team_id", nullable = false)
+    @JoinColumn(name = "visitorteamid", nullable = false)
     private TeamEntity visitorTeam;
 
+    @Column(name = "homescore")
     private int homeScore;
+
+    @Column(name = "visitorscore")
     private int visitorScore;
 
     @ManyToOne
-    @JoinColumn(name = "stadium_id", nullable = false)
+    @JoinColumn(name = "stadiumid", nullable = false)
     private StadiumEntity stadium;
 
     protected MatchEntity() {}
