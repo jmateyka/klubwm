@@ -1,4 +1,4 @@
-CREATE TABLE matches (
+CREATE TABLE IF NOT EXISTS matches (
                          id SERIAL PRIMARY KEY,
                          home_team_id BIGINT REFERENCES teams(id) ON DELETE CASCADE,
                          visitor_team_id BIGINT REFERENCES teams(id) ON DELETE CASCADE,
