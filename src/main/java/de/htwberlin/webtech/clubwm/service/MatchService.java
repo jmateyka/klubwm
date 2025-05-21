@@ -1,5 +1,5 @@
 package de.htwberlin.webtech.clubwm.service;
-/*
+
 import de.htwberlin.webtech.clubwm.persistence.MatchEntity;
 import de.htwberlin.webtech.clubwm.persistence.MatchRepository;
 import de.htwberlin.webtech.clubwm.persistence.TeamEntity;
@@ -52,14 +52,40 @@ public class MatchService {
     }
 
     private Match convertEntityToApi(MatchEntity matchEntity) {
-        Team homeTeam = new Team(matchEntity.getHomeTeam().getId(), matchEntity.getHomeTeam().getName());
-        Team visitorTeam = new Team(matchEntity.getVisitorTeam().getId(), matchEntity.getVisitorTeam().getName());
-        Stadium stadium = new Stadium(matchEntity.getStadium().getId(), matchEntity.getStadium().getName(),
-                matchEntity.getStadium().getLocation(), matchEntity.getStadium().getCapacity());
+        Team homeTeam = new Team(
+                matchEntity.getHomeTeam().getId(),
+                matchEntity.getHomeTeam().getName(),
+                matchEntity.getHomeTeam().getCountry(),
+                matchEntity.getHomeTeam().getLocation(),
+                matchEntity.getHomeTeam().getLeague(),
+                matchEntity.getHomeTeam().getAverageAge(),
+                matchEntity.getHomeTeam().getMarketValue()
+        );
 
-        return new Match(matchEntity.getId(), homeTeam, visitorTeam,
-                matchEntity.getHomeScore(), matchEntity.getVisitorScore(), stadium);
+        Team visitorTeam = new Team(
+                matchEntity.getVisitorTeam().getId(),
+                matchEntity.getVisitorTeam().getName(),
+                matchEntity.getVisitorTeam().getCountry(),
+                matchEntity.getVisitorTeam().getLocation(),
+                matchEntity.getVisitorTeam().getLeague(),
+                matchEntity.getVisitorTeam().getAverageAge(),
+                matchEntity.getVisitorTeam().getMarketValue()
+        );
+
+        Stadium stadium = new Stadium(
+                matchEntity.getStadium().getId(),
+                matchEntity.getStadium().getName(),
+                matchEntity.getStadium().getLocation(),
+                matchEntity.getStadium().getCapacity()
+        );
+
+        return new Match(
+                matchEntity.getId(),
+                homeTeam,
+                visitorTeam,
+                matchEntity.getHomeScore(),
+                matchEntity.getVisitorScore(),
+                stadium
+        );
     }
 }
-
- */
