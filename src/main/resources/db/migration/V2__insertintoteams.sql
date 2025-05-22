@@ -6,7 +6,7 @@ INSERT INTO teams (name, country, location, league, average_age, market_value) V
                                                                                  ('FC Bayern München', 'Deutschland', 'München', 'Bundesliga', 27.8, '859.00 Mio. €'),
                                                                                  ('Inter Mailand', 'Italien', 'Mailand', 'Serie A', 29.5, '663.80 Mio. €'),
                                                                                  ('Juventus Turin', 'Italien', 'Turin', 'Serie A', 25.5, '623.20 Mio. €'),
-                                                                                 ('Atlético Madrid', 'Spanien', 'Madrid', 'La Liga', 29.4, '515.80 Mio. €'),
+                                                                                 ('Atletico Madrid', 'Spanien', 'Madrid', 'La Liga', 29.4, '515.80 Mio. €'),
                                                                                  ('Borussia Dortmund', 'Deutschland', 'Dortmund', 'Bundesliga', 25.3, '436.40 Mio. €'),
                                                                                  ('Benfica Lissabon', 'Portugal', 'Lissabon', 'Primeira Liga', 25.4, '362.50 Mio. €'),
                                                                                  ('FC Porto', 'Portugal', 'Porto', 'Primeira Liga', 25.3, '312.70 Mio. €'),
