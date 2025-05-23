@@ -22,6 +22,7 @@ INSERT INTO teams (name, country, location, league, average_age, market_value) V
                                                                                  ('Inter Miami CF', 'USA', 'Miami', 'Major League Soccer', 26.0, '69.15 Mio. €'),
                                                                                  ('Seattle Sounders FC', 'USA', 'Seattle', 'Major League Soccer', 26.9, '54.35 Mio. €'),
                                                                                  ('CF Pachuca', 'Mexiko', 'Pachuca', 'Liga MX', 25.8, '51.75 Mio. €'),
+                                                                                 ('Hertha BSC', 'Deutschland', 'Berlin', '2. Bundesliga', 25.3, '49.15 Mio. €'),
                                                                                  ('Al-Ain FC', 'Vereinigte Arabische Emirate', 'Al-Ain', 'UAE Pro League', 25.8, '44.84 Mio. €'),
                                                                                  ('Mamelodi Sundowns FC', 'Südafrika', 'Mamelodi', 'DSTV Premiership', 27.7, '35.48 Mio. €'),
                                                                                  ('Al Ahly FC', 'Ägypten', 'Kairo', 'Egyptian Premier League', 27.4, '33.90 Mio. €'),

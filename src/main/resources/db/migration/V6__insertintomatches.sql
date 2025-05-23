@@ -54,7 +54,10 @@ WITH match_data AS (
              ('Juventus Turin', 'Manchester City', 'Camping-World-Stadion'),
              ('Wydad Casablanca', 'Al-Ain FC', 'Audi-Field'),
              ('Al-Hilal SFC', 'CF Pachuca', 'GEODIS-Park'),
-             ('FC Red Bull Salzburg', 'Real Madrid', 'Lincoln-Financial-Field')
+             ('FC Red Bull Salzburg', 'Real Madrid', 'Lincoln-Financial-Field'),
+             ('FC Chelsea', 'Hertha BSC', 'Mercedes-Benz-Stadion'),
+             ('Hertha BSC', 'Esperance Tunis', 'GEODIS-Park'),
+             ('Hertha BSC', 'Flamengo Rio de Janeiro', 'Camping-World-Stadion')
         ) AS matches(hometeam, visitorteam, stadiumname)
             JOIN teams ht ON ht.name = matches.hometeam
             JOIN teams vt ON vt.name = matches.visitorteam
