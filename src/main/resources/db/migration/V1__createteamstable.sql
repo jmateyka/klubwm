@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS teams (
-                                     id SERIAL PRIMARY KEY,
+                                     id BIGINT PRIMARY KEY,
                                      name VARCHAR(255) NOT NULL,
                                      country VARCHAR(255),
                                      location VARCHAR(255),

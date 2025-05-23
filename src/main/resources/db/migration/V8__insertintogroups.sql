@@ -1,15 +1,27 @@
-WITH group_data AS (
-    INSERT INTO groups (name) VALUES
-                                  ('Gruppe A'), ('Gruppe B'), ('Gruppe C'), ('Gruppe D'),
-                                  ('Gruppe E'), ('Gruppe F'), ('Gruppe G'), ('Gruppe H')
-        ON CONFLICT (name) DO NOTHING
-        RETURNING id, name
-)
+-- Zuerst sicherstellen, dass die Einträge in `groups` eindeutige Namen haben
+INSERT INTO groups (name)
+SELECT 'Gruppe A' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe A');
+INSERT INTO groups (name)
+SELECT 'Gruppe B' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe B');
+INSERT INTO groups (name)
+SELECT 'Gruppe C' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe C');
+INSERT INTO groups (name)
+SELECT 'Gruppe D' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe D');
+INSERT INTO groups (name)
+SELECT 'Gruppe E' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe E');
+INSERT INTO groups (name)
+SELECT 'Gruppe F' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe F');
+INSERT INTO groups (name)
+SELECT 'Gruppe G' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe G');
+INSERT INTO groups (name)
+SELECT 'Gruppe H' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe H');
+
+-- Nun die Zuordnungslogik
 INSERT INTO group_teams (group_id, team_id)
 SELECT g.id, t.id
-FROM group_data g
+FROM groups g
          JOIN teams t ON (
-    (g.name = 'Gruppe A' AND t.name IN ('Al Ahly FC', 'Inter Miami', 'SE Palmeiras São Paulo', 'FC Porto')) OR
+    (g.name = 'Gruppe A' AND t.name IN ('Al Ahly FC', 'Inter Miami CF', 'SE Palmeiras São Paulo', 'FC Porto')) OR
     (g.name = 'Gruppe B' AND t.name IN ('Atletico Madrid', 'Botafogo Rio de Janeiro', 'FC Paris Saint-Germain', 'Seattle Sounders FC')) OR
     (g.name = 'Gruppe C' AND t.name IN ('Auckland City FC', 'FC Bayern München', 'Benfica Lissabon', 'CA Boca Juniors')) OR
     (g.name = 'Gruppe D' AND t.name IN ('FC Chelsea', 'Esperance Tunis', 'Flamengo Rio de Janeiro', 'Hertha BSC')) OR

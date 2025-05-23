@@ -1,4 +1,3 @@
--- db/migration/V4__insertintostadiums.sql
 INSERT INTO stadiums (name, location, capacity) VALUES
                                                     ('Hard-Rock-Stadion', 'Miami', 65326),
                                                     ('TQL-Stadion', 'Cincinnati', 26000),

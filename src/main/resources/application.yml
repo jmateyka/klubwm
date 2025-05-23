@@ -32,3 +32,9 @@
       root: INFO
       org.flywaydb.core: DEBUG
       org.hibernate.SQL: DEBUG
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
