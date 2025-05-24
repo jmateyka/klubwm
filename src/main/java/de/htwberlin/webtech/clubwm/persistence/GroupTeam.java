@@ -10,6 +10,11 @@ public class GroupTeam {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "group_id", nullable = false)
+    private GroupEntity group;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id", nullable = false)
     private TeamEntity team;
 
     private int matches = 0;
@@ -32,6 +37,18 @@ public class GroupTeam {
 
     public TeamEntity getTeam() {
         return team;
+    }
+
+    public void setTeam(TeamEntity team) {
+        this.team = team;
+    }
+
+    public GroupEntity getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupEntity group) {
+        this.group = group;
     }
 
     public int getMatches() {

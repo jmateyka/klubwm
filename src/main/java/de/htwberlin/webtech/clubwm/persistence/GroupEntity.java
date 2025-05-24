@@ -14,14 +14,11 @@ public class GroupEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GroupTeam> teams = new ArrayList<>();
 
     protected GroupEntity() {}
 
-    public GroupEntity(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
@@ -35,10 +32,7 @@ public class GroupEntity {
         return teams;
     }
 
-    public void addTeam(GroupTeam groupTeam) {
-        this.teams.add(groupTeam);
-    }
-
     public void setTeams(List<GroupTeam> teams) {
+        this.teams = teams;
     }
 }
