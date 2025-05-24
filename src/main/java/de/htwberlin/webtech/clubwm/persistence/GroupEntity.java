@@ -38,4 +38,7 @@ public class GroupEntity {
     public void addTeam(GroupTeam groupTeam) {
         this.teams.add(groupTeam);
     }
+
+    public void setTeams(List<GroupTeam> teams) {
+    }
 }
