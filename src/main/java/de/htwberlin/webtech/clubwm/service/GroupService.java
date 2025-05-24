@@ -21,12 +21,12 @@ public class GroupService {
     }
 
     public List<GroupEntity> getAllGroups() {
-        return groupRepository.findAll();
+        // Verwende die Methode, um Gruppen mit Teams abzurufen
+        return groupRepository.findAllGroupsWithTeams();
     }
 
     public GroupEntity getGroupById(Long id) {
-        return groupRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Group not found"));
+        return groupRepository.findGroupWithTeamsById(id);
     }
 
     public GroupEntity saveGroup(GroupEntity groupEntity) {
@@ -34,9 +34,7 @@ public class GroupService {
     }
 
     public void calculateStandings(Long groupId) {
-        GroupEntity group = groupRepository.findById(groupId)
-                .orElseThrow(() -> new IllegalArgumentException("Group not found"));
-
+        GroupEntity group = getGroupById(groupId); // Verwendet jetzt die neue Methode
         List<GroupTeam> teams = group.getTeams();
 
         // Sortiere die Teams nach Punkten, Tordifferenz und erzielten Toren, bei Gleichstand Zufall
