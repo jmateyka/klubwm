@@ -1,5 +1,6 @@
 package de.htwberlin.webtech.clubwm.persistence;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,7 @@ public class GroupTeam {
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
+    @JsonBackReference
     private GroupEntity group;
 
     @ManyToOne
@@ -22,7 +24,7 @@ public class GroupTeam {
     private int draws = 0;
     private int losses = 0;
     private int goalDifference = 0;
-    private int goalScored = 0;  // Feld hinzugefügt
+    private int goalScored = 0;
     private int points = 0;
 
     protected GroupTeam() {}

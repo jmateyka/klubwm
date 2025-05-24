@@ -1,5 +1,6 @@
 package de.htwberlin.webtech.clubwm.persistence;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,10 @@ public class GroupEntity {
     private String name;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<GroupTeam> teams = new ArrayList<>();
 
     protected GroupEntity() {}
-
 
     public Long getId() {
         return id;
