@@ -22,7 +22,7 @@ public class GroupTeam {
     private int draws = 0;
     private int losses = 0;
     private int goalDifference = 0;
-    private int goalScored = 0;
+    private int goalScored = 0;  // Feld hinzugefügt
     private int points = 0;
 
     protected GroupTeam() {}
@@ -35,20 +35,20 @@ public class GroupTeam {
         return id;
     }
 
-    public TeamEntity getTeam() {
-        return team;
-    }
-
-    public void setTeam(TeamEntity team) {
-        this.team = team;
-    }
-
     public GroupEntity getGroup() {
         return group;
     }
 
     public void setGroup(GroupEntity group) {
         this.group = group;
+    }
+
+    public TeamEntity getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamEntity team) {
+        this.team = team;
     }
 
     public int getMatches() {

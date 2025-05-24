@@ -12,5 +12,6 @@ CREATE TABLE IF NOT EXISTS group_team (
                                           draws INT DEFAULT 0,
                                           losses INT DEFAULT 0,
                                           goal_difference INT DEFAULT 0,
+                                          goal_scored INT DEFAULT 0,
                                           points INT DEFAULT 0
 );
