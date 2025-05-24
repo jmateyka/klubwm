@@ -17,7 +17,7 @@ INSERT INTO groups (name)
 SELECT 'Gruppe H' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe H');
 
 -- Nun die Zuordnungslogik
-INSERT INTO group_teams (group_id, team_id)
+INSERT INTO group_team (group_id, team_id)
 SELECT g.id, t.id
 FROM groups g
          JOIN teams t ON (
