@@ -5,6 +5,7 @@ import de.htwberlin.webtech.clubwm.web.api.Match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -26,12 +27,13 @@ public class MatchRestController {
         return ResponseEntity.ok(matches);
     }
 
-    @PutMapping("/matches/{id}")
-    public ResponseEntity<Match> updateMatch(@PathVariable Long id, @RequestBody Match match) {
-        if (!matchService.existsById(id)) {
-            return ResponseEntity.notFound().build();
+    @PutMapping("/matches/batch")
+    public ResponseEntity<Void> updateMatches(@RequestBody List<Match> matches) {
+        boolean allUpdated = matchService.updateMatches(matches);
+        if (allUpdated) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        Match updatedMatch = matchService.updateMatch(id, match);
-        return ResponseEntity.ok(updatedMatch);
     }
 }

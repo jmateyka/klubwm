@@ -33,6 +33,29 @@ public class MatchService {
                 .collect(Collectors.toList());
     }
 
+    public boolean updateMatches(List<Match> matches) {
+        try {
+            List<MatchEntity> matchEntities = matches.stream()
+                    .map(match -> {
+                        MatchEntity matchEntity = matchRepository.findById(match.getId())
+                                .orElseThrow(() -> new IllegalArgumentException("Match not found with id: " + match.getId()));
+                        matchEntity.setHomeScore(match.getHomeScore());
+                        matchEntity.setVisitorScore(match.getVisitorScore());
+                        return matchEntity;
+                    })
+                    .collect(Collectors.toList());
+
+            matchRepository.saveAll(matchEntities);
+            // Optional: Aktualisieren der Gruppenstatistiken nach Batch-Updates
+            updateGroupStandings();
+            return true;
+        } catch (Exception e) {
+            // Loggen Sie den Fehler für Debugging-Zwecke
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public Match updateMatch(Long id, Match match) {
         MatchEntity matchEntity = matchRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Match not found with id: " + id));
