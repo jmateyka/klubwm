@@ -45,11 +45,11 @@ public class GroupService {
     public void updateGroupStandings(List<MatchEntity> matches) {
         Map<GroupEntity, List<GroupTeam>> groupStats = calculateStatsForAllGroups(matches);
 
-        for (Map.Entry<GroupEntity, List<GroupTeam>> entry : groupStats.entrySet()) {
-            GroupEntity group = entry.getKey();
-            List<GroupTeam> teamsStats = entry.getValue();
+        for (GroupEntity group : groupStats.keySet()) {
+            List<GroupTeam> teamsStats = groupStats.get(group);
 
-            group.getTeams().forEach(team -> {
+            List<GroupTeam> groupTeams = group.getTeams();
+            for (GroupTeam team : groupTeams) {
                 GroupTeam updatedTeamStats = teamsStats.stream()
                         .filter(t -> Objects.equals(t.getTeam().getId(), team.getTeam().getId()))
                         .findFirst()
@@ -61,9 +61,9 @@ public class GroupService {
                 team.setLosses(updatedTeamStats.getLosses());
                 team.setGoalDifference(updatedTeamStats.getGoalDifference());
                 team.setPoints(updatedTeamStats.getPoints());
-            });
+            }
 
-            groupRepository.save(group);
+            group.setTeams(groupTeams);
             calculateStandings(group.getId());
         }
     }
