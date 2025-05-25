@@ -33,24 +33,23 @@ public class MatchService {
                 .collect(Collectors.toList());
     }
 
-    public Match saveMatch(Match match) {
-        TeamEntity homeTeamEntity = teamRepository.findById(match.getHomeTeam().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Home Team not found"));
-        TeamEntity visitorTeamEntity = teamRepository.findById(match.getVisitorTeam().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Visitor Team not found"));
+    public Match updateMatch(Long id, Match match) {
+        MatchEntity matchEntity = matchRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Match not found with id: " + id));
 
-        StadiumEntity stadiumEntity = stadiumRepository.findById(match.getStadium().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Stadium not found"));
+        matchEntity.setHomeScore(match.getHomeScore());
+        matchEntity.setVisitorScore(match.getVisitorScore());
 
-        MatchEntity matchEntity = new MatchEntity(homeTeamEntity, visitorTeamEntity,
-                match.getHomeScore(), match.getVisitorScore(), stadiumEntity);
+        MatchEntity updatedMatchEntity = matchRepository.save(matchEntity);
 
-        MatchEntity savedMatchEntity = matchRepository.save(matchEntity);
-
-        // Aktualisieren der Gruppenstatistiken nach Speichern des Matches
+        // Aktualisieren der Gruppenstatistiken nach Update des Matches
         updateGroupStandings();
 
-        return convertEntityToApi(savedMatchEntity);
+        return convertEntityToApi(updatedMatchEntity);
+    }
+
+    public boolean existsById(Long id) {
+        return matchRepository.existsById(id);
     }
 
     private Match convertEntityToApi(MatchEntity matchEntity) {

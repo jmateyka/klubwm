@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS matches (
-                                       id BIGINT PRIMARY KEY,
+                                       id SERIAL PRIMARY KEY,
                                        hometeamid BIGINT,
                                        visitorteamid BIGINT,
                                        homescore INT CHECK (homescore >= 0),

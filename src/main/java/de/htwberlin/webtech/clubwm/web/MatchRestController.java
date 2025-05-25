@@ -26,9 +26,12 @@ public class MatchRestController {
         return ResponseEntity.ok(matches);
     }
 
-    @PostMapping("/matches")
-    public ResponseEntity<Match> saveMatch(@RequestBody Match match) {
-        Match savedMatch = matchService.saveMatch(match);
-        return ResponseEntity.ok(savedMatch);
+    @PutMapping("/matches/{id}")
+    public ResponseEntity<Match> updateMatch(@PathVariable Long id, @RequestBody Match match) {
+        if (!matchService.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Match updatedMatch = matchService.updateMatch(id, match);
+        return ResponseEntity.ok(updatedMatch);
     }
 }

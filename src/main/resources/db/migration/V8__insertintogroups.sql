@@ -1,4 +1,4 @@
--- Zuerst sicherstellen, dass die Einträge in `groups` eindeutige Namen haben
+-- Sicherstellen, dass die Einträge in `groups` eindeutige Namen haben
 INSERT INTO groups (name)
 SELECT 'Gruppe A' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe A');
 INSERT INTO groups (name)
@@ -16,7 +16,7 @@ SELECT 'Gruppe G' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe G'
 INSERT INTO groups (name)
 SELECT 'Gruppe H' WHERE NOT EXISTS (SELECT 1 FROM groups WHERE name = 'Gruppe H');
 
--- Nun die Zuordnungslogik
+-- Die Zuordnungslogik nur dann ausführen, wenn noch nicht vorhanden
 INSERT INTO group_team (group_id, team_id)
 SELECT g.id, t.id
 FROM groups g
@@ -29,4 +29,8 @@ FROM groups g
     (g.name = 'Gruppe F' AND t.name IN ('Borussia Dortmund', 'Fluminense Rio de Janeiro', 'Mamelodi Sundowns FC', 'Ulsan HD FC')) OR
     (g.name = 'Gruppe G' AND t.name IN ('Al-Ain FC', 'Juventus Turin', 'Manchester City', 'Wydad Casablanca')) OR
     (g.name = 'Gruppe H' AND t.name IN ('Al-Hilal SFC', 'CF Pachuca', 'Real Madrid', 'FC Red Bull Salzburg'))
-    );
+    )
+WHERE NOT EXISTS (
+    SELECT 1 FROM group_team gt
+    WHERE gt.group_id = g.id AND gt.team_id = t.id
+);

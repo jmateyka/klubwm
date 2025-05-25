@@ -64,4 +64,10 @@ WITH match_data AS (
 )
 INSERT INTO matches (hometeamid, visitorteamid, homescore, visitorscore, stadiumid)
 SELECT hometeamid, visitorteamid, homescore, visitorscore, stadiumid
-FROM match_data;
+FROM match_data
+WHERE NOT EXISTS (
+    SELECT 1 FROM matches m
+    WHERE m.hometeamid = match_data.hometeamid
+      AND m.visitorteamid = match_data.visitorteamid
+      AND m.stadiumid = match_data.stadiumid
+);
