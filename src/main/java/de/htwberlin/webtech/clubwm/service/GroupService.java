@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupService {
@@ -43,34 +44,20 @@ public class GroupService {
     }
 
     public void updateGroupStandings(List<MatchEntity> matches) {
-        Map<GroupEntity, List<GroupTeam>> groupStats = calculateStatsForAllGroups(matches);
-
-        for (GroupEntity group : groupStats.keySet()) {
-            List<GroupTeam> teamsStats = groupStats.get(group);
-
-            List<GroupTeam> groupTeams = group.getTeams();
-            for (GroupTeam team : groupTeams) {
-                GroupTeam updatedTeamStats = teamsStats.stream()
-                        .filter(t -> Objects.equals(t.getTeam().getId(), team.getTeam().getId()))
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("Team not found in updated stats"));
-
-                team.setMatches(updatedTeamStats.getMatches());
-                team.setWins(updatedTeamStats.getWins());
-                team.setDraws(updatedTeamStats.getDraws());
-                team.setLosses(updatedTeamStats.getLosses());
-                team.setGoalDifference(updatedTeamStats.getGoalDifference());
-                team.setPoints(updatedTeamStats.getPoints());
+        // Holen aller Gruppen und Zurücksetzen der Statistiken
+        for (GroupEntity group : groupRepository.findAll()) {
+            for (GroupTeam team : group.getTeams()) {
+                team.setMatches(0);
+                team.setWins(0);
+                team.setDraws(0);
+                team.setLosses(0);
+                team.setGoalDifference(0);
+                team.setGoalScored(0);
+                team.setPoints(0);
             }
-
-            group.setTeams(groupTeams);
-            calculateStandings(group.getId());
         }
-    }
 
-    private Map<GroupEntity, List<GroupTeam>> calculateStatsForAllGroups(List<MatchEntity> matches) {
-        Map<GroupEntity, List<GroupTeam>> groupStats = new HashMap<>();
-
+        // Berechnung der Statistiken basierend auf den Matches
         for (MatchEntity match : matches) {
             GroupEntity homeGroup = findGroupByTeam(match.getHomeTeam());
             GroupEntity visitorGroup = findGroupByTeam(match.getVisitorTeam());
@@ -84,20 +71,14 @@ public class GroupService {
             int visitorPoints = match.getVisitorScore() > match.getHomeScore() ? 3 :
                     match.getVisitorScore() == match.getHomeScore() ? 1 : 0;
 
-            updateTeamStats(groupStats, homeGroup, match.getHomeTeam(), match.getHomeScore(),
-                    match.getVisitorScore(), homePoints);
-            updateTeamStats(groupStats, visitorGroup, match.getVisitorTeam(), match.getVisitorScore(),
-                    match.getHomeScore(), visitorPoints);
+            updateTeamStats(homeGroup, match.getHomeTeam(), match.getHomeScore(), match.getVisitorScore(), homePoints);
+            updateTeamStats(visitorGroup, match.getVisitorTeam(), match.getVisitorScore(), match.getHomeScore(), visitorPoints);
         }
 
-        groupStats.forEach((group, teams) -> teams.sort(
-                Comparator.comparingInt(GroupTeam::getPoints).reversed()
-                        .thenComparingInt(GroupTeam::getGoalDifference).reversed()
-                        .thenComparingInt(GroupTeam::getGoalScored).reversed()
-                        .thenComparingInt(t -> new Random().nextInt())
-        ));
-
-        return groupStats;
+        // Speichern der gruppierten Teams
+        for (GroupEntity group : groupRepository.findAll()) {
+            calculateStandings(group.getId());
+        }
     }
 
     private GroupEntity findGroupByTeam(TeamEntity team) {
@@ -108,15 +89,13 @@ public class GroupService {
                 .orElseThrow(() -> new IllegalArgumentException("No group found for team " + team.getName()));
     }
 
-    private void updateTeamStats(Map<GroupEntity, List<GroupTeam>> groupStats, GroupEntity group,
-                                 TeamEntity team, int goalsScored, int goalsConceded, int points) {
-        GroupTeam groupTeam = groupStats
-                .computeIfAbsent(group, k -> new ArrayList<>()).stream()
+    private void updateTeamStats(GroupEntity group, TeamEntity team, int goalsScored, int goalsConceded, int points) {
+        GroupTeam groupTeam = group.getTeams().stream()
                 .filter(gt -> gt.getTeam().equals(team))
                 .findFirst()
                 .orElseGet(() -> {
                     GroupTeam newTeamStats = new GroupTeam(team);
-                    groupStats.get(group).add(newTeamStats);
+                    group.getTeams().add(newTeamStats);
                     return newTeamStats;
                 });
 
