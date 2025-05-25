@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupService {
@@ -20,28 +21,23 @@ public class GroupService {
         this.groupRepository = groupRepository;
     }
 
+    public GroupEntity getGroupById(Long groupId) {
+        return groupRepository.findById(groupId)
+                .orElseThrow(() -> new IllegalArgumentException("Group not found with id: " + groupId));
+    }
+
     public List<GroupEntity> getAllGroups() {
-        // Verwende die Methode, um Gruppen mit Teams abzurufen
-        return groupRepository.findAllGroupsWithTeams();
-    }
-
-    public GroupEntity getGroupById(Long id) {
-        return groupRepository.findGroupWithTeamsById(id);
-    }
-
-    public GroupEntity saveGroup(GroupEntity groupEntity) {
-        return groupRepository.save(groupEntity);
+        return groupRepository.findAll();
     }
 
     public void calculateStandings(Long groupId) {
-        GroupEntity group = getGroupById(groupId); // Verwendet jetzt die neue Methode
+        GroupEntity group = getGroupById(groupId);
         List<GroupTeam> teams = group.getTeams();
 
-        // Sortiere die Teams nach Punkten, Tordifferenz und erzielten Toren, bei Gleichstand Zufall
         teams.sort(Comparator.comparingInt(GroupTeam::getPoints).reversed()
                 .thenComparingInt(GroupTeam::getGoalDifference).reversed()
                 .thenComparingInt(GroupTeam::getGoalScored).reversed()
-                .thenComparing(t -> new Random().nextInt()));  // Zufällige Entscheidung bei weiterem Gleichstand
+                .thenComparingInt(t -> new Random().nextInt()));
 
         group.setTeams(teams);
         groupRepository.save(group);

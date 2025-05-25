@@ -17,14 +17,17 @@ public class MatchService {
     private final GroupRepository groupRepository;
     private final TeamRepository teamRepository;
     private final StadiumRepository stadiumRepository;
+    private final GroupService groupService;
 
     @Autowired
     public MatchService(MatchRepository matchRepository, GroupRepository groupRepository,
-                        TeamRepository teamRepository, StadiumRepository stadiumRepository) {
+                        TeamRepository teamRepository, StadiumRepository stadiumRepository,
+                        GroupService groupService) {
         this.matchRepository = matchRepository;
         this.groupRepository = groupRepository;
         this.teamRepository = teamRepository;
         this.stadiumRepository = stadiumRepository;
+        this.groupService = groupService;
     }
 
     public List<Match> getAllMatches() {
@@ -46,11 +49,9 @@ public class MatchService {
                     .collect(Collectors.toList());
 
             matchRepository.saveAll(matchEntities);
-            // Optional: Aktualisieren der Gruppenstatistiken nach Batch-Updates
             updateGroupStandings();
             return true;
         } catch (Exception e) {
-            // Loggen Sie den Fehler für Debugging-Zwecke
             e.printStackTrace();
             return false;
         }
@@ -63,12 +64,10 @@ public class MatchService {
         matchEntity.setHomeScore(match.getHomeScore());
         matchEntity.setVisitorScore(match.getVisitorScore());
 
-        MatchEntity updatedMatchEntity = matchRepository.save(matchEntity);
-
-        // Aktualisieren der Gruppenstatistiken nach Update des Matches
+        matchRepository.save(matchEntity);
         updateGroupStandings();
 
-        return convertEntityToApi(updatedMatchEntity);
+        return convertEntityToApi(matchEntity);
     }
 
     public boolean existsById(Long id) {
@@ -136,6 +135,7 @@ public class MatchService {
             });
 
             groupRepository.save(group);
+            groupService.calculateStandings(group.getId());
         }
     }
 
@@ -146,12 +146,10 @@ public class MatchService {
             GroupEntity homeGroup = findGroupByTeam(match.getHomeTeam());
             GroupEntity visitorGroup = findGroupByTeam(match.getVisitorTeam());
 
-            // Assuming each team belongs to exactly one group
             if (!homeGroup.equals(visitorGroup)) {
                 throw new IllegalStateException("Both teams must belong to the same group.");
             }
 
-            // Calculate match results
             int homePoints = match.getHomeScore() > match.getVisitorScore() ? 3 :
                     match.getHomeScore() == match.getVisitorScore() ? 1 : 0;
             int visitorPoints = match.getVisitorScore() > match.getHomeScore() ? 3 :
@@ -163,13 +161,12 @@ public class MatchService {
                     match.getHomeScore(), visitorPoints);
         }
 
-        // Sort each group's teams based on the criteria
         for (Map.Entry<GroupEntity, List<GroupTeam>> entry : groupStats.entrySet()) {
             List<GroupTeam> sortedTeams = entry.getValue().stream()
                     .sorted(Comparator.comparingInt(GroupTeam::getPoints).reversed()
                             .thenComparingInt(GroupTeam::getGoalDifference).reversed()
                             .thenComparingInt(GroupTeam::getGoalScored).reversed()
-                            .thenComparingInt(t -> new Random().nextInt())) // Use a random tiebreaker
+                            .thenComparingInt(t -> new Random().nextInt()))
                     .collect(Collectors.toList());
 
             entry.setValue(sortedTeams);
