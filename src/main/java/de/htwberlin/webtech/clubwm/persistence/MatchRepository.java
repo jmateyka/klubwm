@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatchRepository extends JpaRepository<MatchEntity, Long> {
-    // hier evtl. weitere Abfragen einfügen
 }
